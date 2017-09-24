@@ -27,13 +27,10 @@
 
 <script>
 export default {
-  data() {
-    return {
-      meetups: [
-        { imageUrl: 'https://i0.wp.com/www.thesweetestway.com/wp-content/uploads/2015/09/Skopje-7.jpg?resize=1024%2C683', id: '1', title: 'Meetup in Skopje' },
-        { imageUrl: 'http://kongres-magazine.eu/wp-content/uploads/2016/10/Ohrid-3-1024x627.jpg', id: '2', title: 'Meetup in Ohrid' },
-      ],
-    };
+  computed: {
+    meetups() {
+      return this.$store.getters.featuredMeetups;
+    },
   },
   methods: {
     onLoadMeetup(id) {

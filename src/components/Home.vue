@@ -10,8 +10,8 @@
     </v-layout>
     <v-layout row wrap class="mt-2">
       <v-flex xs12>
-        <v-carousel>
-          <v-carousel-item v-for="meetup in meetups" :src="meetup.imageUrl" :key="meetup.id">
+        <v-carousel style="cursor: pointer">
+          <v-carousel-item v-for="meetup in meetups" :src="meetup.imageUrl" :key="meetup.id" @click="onLoadMeetup(meetup.id)">
             <div class="title">{{meetup.title}}</div>
           </v-carousel-item>
         </v-carousel>
@@ -34,6 +34,11 @@ export default {
         { imageUrl: 'http://kongres-magazine.eu/wp-content/uploads/2016/10/Ohrid-3-1024x627.jpg', id: '2', title: 'Meetup in Ohrid' },
       ],
     };
+  },
+  methods: {
+    onLoadMeetup(id) {
+      this.$router.push(`/meetups/ + ${id}`);
+    },
   },
 };
 </script>

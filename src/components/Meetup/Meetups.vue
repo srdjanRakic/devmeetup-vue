@@ -8,7 +8,6 @@
               <v-flex xs5 sm4 md3>
                 <v-card-media src="https://i0.wp.com/www.thesweetestway.com/wp-content/uploads/2015/09/Skopje-7.jpg?resize=1024%2C683" 
                               height="130px">
-
                 </v-card-media>
               </v-flex>
               <v-flex xs7 sm8 md9>
@@ -19,7 +18,7 @@
                   </div>
                 </v-card-title>
                 <v-card-actions>
-                  <v-btn flat>
+                  <v-btn flat to="/meetups/1">
                     <v-icon left light>arrow_forward</v-icon>
                     View Meetup
                   </v-btn>

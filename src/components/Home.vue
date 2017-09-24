@@ -40,7 +40,9 @@
     },
     methods: {
       onLoadMeetup(id) {
-        this.$router.push(`'/meetups/' + ${id}`);
+        /*eslint-disable */
+        this.$router.push('/meetups/' + id);
+        /*eslint-enable */
       },
     },
   };

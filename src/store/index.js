@@ -10,14 +10,18 @@ export const store = new Vuex.Store({
       {
         imageUrl: 'https://i0.wp.com/www.thesweetestway.com/wp-content/uploads/2015/09/Skopje-7.jpg?resize=1024%2C683',
         id: 'afajfjadfaadfa323',
-        title: 'Meetup in Skopje',
+        title: 'Vue.js Meetup',
         date: '2017-09-30',
+        location: 'Skopje',
+        description: 'Introduction to Vue.js.',
       },
       {
         imageUrl: 'http://kongres-magazine.eu/wp-content/uploads/2016/10/Ohrid-3-1024x627.jpg',
         id: 'aadsfhbkhlk1241',
-        title: 'Meetup in Ohrid',
+        title: 'Angular Meetup',
         date: '2017-09-27',
+        location: 'Ohrid',
+        description: 'Introduction to Angular.',
       },
     ],
     user: {

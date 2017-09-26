@@ -8,22 +8,43 @@
               <form>
                 <v-layout row>
                   <v-flex xs-12>
-                    <v-text-field name="email" label="Mail" id="email" v-model="email" type="email" required></v-text-field>
+                    <v-text-field
+                      name="email"
+                      label="Mail"
+                      id="email"
+                      v-model="email"
+                      type="email"
+                      required>
+                    </v-text-field>
                   </v-flex>
                 </v-layout>
                 <v-layout row>
                   <v-flex xs-12>
-                    <v-text-field name="password" label="Password" id="password" v-model="password" type="password" required></v-text-field>
+                    <v-text-field
+                      name="password"
+                      label="Password"
+                      id="password"
+                      v-model="password"
+                      type="password"
+                      required>
+                    </v-text-field>
                   </v-flex>
                 </v-layout>
                 <v-layout row>
                   <v-flex xs-12>
-                    <v-text-field name="confirmPassword" label="Confirm Password" id="confirmPassword" v-model="confirmPassword" type="password"></v-text-field>
+                    <v-text-field
+                     name="confirmPassword"
+                     label="Confirm Password"
+                     id="confirmPassword"
+                     v-model="confirmPassword"
+                     type="password"
+                     :rules="[comparePasswords]">
+                  </v-text-field>
                   </v-flex>
                 </v-layout>
                 <v-layout row>
                   <v-flex xs12>
-                    <v-btn type="submit">Sign up</v-btn>
+                    <v-btn type="submit" @click="onSignup">Sign up</v-btn>
                   </v-flex>
                 </v-layout>
               </form>
@@ -43,6 +64,11 @@ export default {
       password: '',
       confirmPassword: '',
     };
+  },
+  computed: {
+    comparePasswords() {
+      return this.password !== this.confirmPassword ? 'Passwords do not match' : true;
+    },
   },
   methods: {
     onSignup() {

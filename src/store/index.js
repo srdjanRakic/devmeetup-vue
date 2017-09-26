@@ -3,9 +3,8 @@ import Vuex from 'vuex';
 import * as firebase from 'firebase';
 
 Vue.use(Vuex);
-/*eslint-disable */
+// eslint-disable-next-line
 export const store = new Vuex.Store({
-/*eslint-enable */
   state: {
     loadedMeetups: [
       {
@@ -26,15 +25,27 @@ export const store = new Vuex.Store({
       },
     ],
     user: null,
+    loading: false,
+    error: null,
   },
   mutations: {
+    /*eslint-disable */
     createMeetup(state, payload) {
       state.loadedMeetups.push(payload);
     },
     setUser(state, payload) {
-      // eslint-disable-next-line
       state.user = payload;
     },
+    setLoading(state, payload) {
+      state.loading = payload;
+    },
+    setError(state, payload) {
+      state.error = payload;
+    },
+    clearError(state) {
+      state.error = null;
+    }
+    /*eslint-enable */
   },
   actions: {
     createMeetup({ commit }, payload) {
@@ -50,9 +61,12 @@ export const store = new Vuex.Store({
       commit('createMeetup', meetup);
     },
     signUserUp({ commit }, payload) {
+      commit('setLoading', true);
+      commit('clearError');
       firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
       .then(
         (user) => {
+          commit('setLoading', false);
           const newUser = {
             id: user.uid,
             registeredMeetups: [],
@@ -62,8 +76,8 @@ export const store = new Vuex.Store({
       )
       .catch(
         (error) => {
-          // eslint-disable-next-line
-          console.log(error);
+          commit('setLoading', false);
+          commit('setError', error);
         },
       );
     },
@@ -71,6 +85,8 @@ export const store = new Vuex.Store({
       firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
       .then(
         (user) => {
+          commit('setLoading', false);
+          commit('clearError');
           const newUser = {
             id: user.uid,
             registeredMeetups: [],
@@ -80,10 +96,13 @@ export const store = new Vuex.Store({
       )
       .catch(
         (error) => {
-          // eslint-disable-next-line
-          console.log(error);
+          commit('setLoading', false);
+          commit('setError', error);
         },
       );
+    },
+    clearError({ commit }) {
+      commit('clearError');
     },
   },
   getters: {
@@ -98,6 +117,12 @@ export const store = new Vuex.Store({
     },
     user(state) {
       return state.user;
+    },
+    loading(state) {
+      return state.loading;
+    },
+    error(state) {
+      return state.error;
     },
   },
 });

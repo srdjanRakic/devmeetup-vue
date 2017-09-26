@@ -6,12 +6,13 @@ import App from './App';
 import router from './router';
 import { store } from './store';
 import DateFilter from './filters/date';
-
+import AlertCmp from './components/Shared/Alert';
 
 Vue.use(Vuetify);
 Vue.config.productionTip = false;
 
 Vue.filter('date', DateFilter);
+Vue.component('app-alert', AlertCmp);
 
 /* eslint-disable no-new */
 new Vue({

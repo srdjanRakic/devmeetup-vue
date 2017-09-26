@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import * as firebase from 'firebase';
 
 Vue.use(Vuex);
 /*eslint-disable */
@@ -24,14 +25,15 @@ export const store = new Vuex.Store({
         description: 'Introduction to Angular.',
       },
     ],
-    user: {
-      id: 'ajaldslfalsk12',
-      registeredMeetups: ['aadsfhbkhlk1241'],
-    },
+    user: null,
   },
   mutations: {
     createMeetup(state, payload) {
       state.loadedMeetups.push(payload);
+    },
+    setUser(state, payload) {
+      // eslint-disable-next-line
+      state.user = payload;
     },
   },
   actions: {
@@ -47,6 +49,24 @@ export const store = new Vuex.Store({
       // Reach out to firebase and store it
       commit('createMeetup', meetup);
     },
+    signUserUp({ commit }, payload) {
+      firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
+      .then(
+        (user) => {
+          const newUser = {
+            id: user.uid,
+            registeredMeetups: [],
+          };
+          commit('setUser', newUser);
+        },
+      )
+      .catch(
+        (error) => {
+          // eslint-disable-next-line
+          console.log(error);
+        },
+      );
+    },
   },
   getters: {
     loadedMeetups(state) {
@@ -57,6 +77,9 @@ export const store = new Vuex.Store({
     },
     loadedMeetup(state) {
       return meetupId => state.loadedMeetups.find(meetup => meetup.id === meetupId);
+    },
+    user(state) {
+      return state.user;
     },
   },
 });

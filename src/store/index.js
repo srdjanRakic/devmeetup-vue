@@ -67,6 +67,24 @@ export const store = new Vuex.Store({
         },
       );
     },
+    signUserIn({ commit }, payload) {
+      firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
+      .then(
+        (user) => {
+          const newUser = {
+            id: user.uid,
+            registeredMeetups: [],
+          };
+          commit('setUser', newUser);
+        },
+      )
+      .catch(
+        (error) => {
+          // eslint-disable-next-line
+          console.log(error);
+        },
+      );
+    },
   },
   getters: {
     loadedMeetups(state) {

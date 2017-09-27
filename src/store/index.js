@@ -66,6 +66,7 @@ export const store = new Vuex.Store({
                 description: obj[key].description,
                 imageUrl: obj[key].imageUrl,
                 date: obj[key].date,
+                creatorId: obj[key].creatorId,
               });
             }
           });
@@ -78,27 +79,44 @@ export const store = new Vuex.Store({
           commit('setLoading', true);
         });
     },
-    createMeetup({ commit }, payload) {
+    createMeetup({ commit, getters }, payload) {
       const meetup = {
         title: payload.title,
         location: payload.location,
-        imageUrl: payload.imageUrl,
         description: payload.description,
         date: payload.date.toISOString(),
+        creatorId: getters.user.id,
       };
+
+      let imageUrl;
+      let key;
+
       firebase.database().ref('meetups').push(meetup)
         .then((data) => {
-          const key = data.key;
+          key = data.key;
+          return key;
+        },
+        )
+        .then(() => {
+          const fileName = payload.image.name;
+          const ext = fileName.slice(fileName.lastIndexOf('.'));
+          return firebase.storage().ref(`meetups/${key}.${ext}`).put(payload.image);
+        })
+        .then((fileData) => {
+          imageUrl = fileData.metadata.downloadURLs[0];
+          return firebase.database().ref('meetups').child(key).update({ imageUrl });
+        })
+        .then(() => {
           commit('createMeetup', {
             ...meetup,
+            imageUrl,
             id: key,
           });
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.log(error);
         },
-      )
-      .catch((error) => {
-        // eslint-disable-next-line
-        console.log(error);
-      },
     );
     },
     signUserUp({ commit }, payload) {
@@ -144,6 +162,10 @@ export const store = new Vuex.Store({
     },
     autoSignIn({ commit }, payload) {
       commit('setUser', { id: payload.uid, registeredMeetups: [] });
+    },
+    logout({ commit }) {
+      firebase.auth().signOut();
+      commit('setUser', null);
     },
     clearError({ commit }) {
       commit('clearError');

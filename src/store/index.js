@@ -75,6 +75,7 @@ export const store = new Vuex.Store({
         })
         .catch(
           (error) => {
+            // eslint-disable-next-line
             console.log(error);
             commit('setLoading', false);
           },
@@ -112,6 +113,7 @@ export const store = new Vuex.Store({
           });
         })
         .catch((error) => {
+          // eslint-disable-next-line
           console.log(error);
         });
     },
@@ -133,6 +135,7 @@ export const store = new Vuex.Store({
           (error) => {
             commit('setLoading', false);
             commit('setError', error);
+            // eslint-disable-next-line
             console.log(error);
           },
         );
@@ -155,6 +158,7 @@ export const store = new Vuex.Store({
           (error) => {
             commit('setLoading', false);
             commit('setError', error);
+            // eslint-disable-next-line
             console.log(error);
           },
         );

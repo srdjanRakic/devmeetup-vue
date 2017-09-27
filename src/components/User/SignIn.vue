@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-layout row v-if="error">
-      <v-flex s12 sm6 offset-sm3>
+      <v-flex xs12 sm6 offset-sm3>
         <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
       </v-flex>
     </v-layout>
@@ -12,36 +12,34 @@
             <v-container>
               <form @submit.prevent="onSignin">
                 <v-layout row>
-                  <v-flex xs-12>
+                  <v-flex xs12>
                     <v-text-field
                       name="email"
                       label="Mail"
                       id="email"
                       v-model="email"
                       type="email"
-                      required>
-                    </v-text-field>
+                      required></v-text-field>
                   </v-flex>
                 </v-layout>
                 <v-layout row>
-                  <v-flex xs-12>
+                  <v-flex xs12>
                     <v-text-field
                       name="password"
                       label="Password"
                       id="password"
                       v-model="password"
                       type="password"
-                      required>
-                    </v-text-field>
+                      required></v-text-field>
                   </v-flex>
                 </v-layout>
                 <v-layout row>
                   <v-flex xs12>
                     <v-btn type="submit" :disabled="loading" :loading="loading">
                       Sign in
-                      <span slot="loader" class="custom-loader">
+                       <span slot="loader" class="custom-loader">
                         <v-icon light>cached</v-icon>
-                      </span>
+                       </span>
                     </v-btn>
                   </v-flex>
                 </v-layout>
@@ -75,7 +73,7 @@ export default {
   },
   watch: {
     user(value) {
-      if (value) {
+      if (value !== null && value !== undefined) {
         this.$router.push('/');
       }
     },

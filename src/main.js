@@ -28,6 +28,11 @@ new Vue({
       projectId: 'devmeetup-55085',
       storageBucket: 'devmeetup-55085.appspot.com',
     });
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.$store.dispatch('autoSignIn', user);
+      }
+    });
     this.$store.dispatch('loadMeetups');
   },
 });

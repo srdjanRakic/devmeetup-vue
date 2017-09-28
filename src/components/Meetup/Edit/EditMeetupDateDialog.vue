@@ -18,15 +18,11 @@
                 <v-btn
                   class="blue--text darken-1"
                   flat
-                  @click.native="editDialog = false">
-                  Close
-                </v-btn>
+                  @click.native="editDialog = false">Close</v-btn>
                 <v-btn
                   class="blue--text darken-1"
                   flat
-                  @click.native="onSaveChanges">
-                  Save
-                </v-btn>
+                  @click.native="onSaveChanges">Save</v-btn>
               </template>
             </v-date-picker>
           </v-flex>
@@ -54,10 +50,14 @@ export default {
       newDate.setUTCDate(newDay);
       newDate.setUTCMonth(newMonth);
       newDate.setUTCFullYear(newYear);
+      this.$store.dispatch('updateMeetupData', {
+        id: this.meetup.id,
+        date: newDate,
+      });
     },
   },
   created() {
     this.editableDate = new Date(this.meetup.date);
-  }
+  },
 };
 </script>

@@ -170,6 +170,7 @@ export const store = new Vuex.Store({
           commit('updateMeetupData', payload);
         })
         .catch((error) => {
+          // eslint-disable-next-line
           console.log(error);
           commit('setLoading', false);
         });

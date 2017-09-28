@@ -15,7 +15,8 @@
                 label="Title"
                 id="title"
                 v-model="title"
-                required></v-text-field>
+                required>
+              </v-text-field>
             </v-flex>
           </v-layout>
           <v-layout row>
@@ -25,7 +26,8 @@
                 label="Location"
                 id="location"
                 v-model="location"
-                required></v-text-field>
+                required>
+              </v-text-field>
             </v-flex>
           </v-layout>
           <v-layout row>
@@ -47,7 +49,8 @@
                 id="description"
                 multi-line
                 v-model="description"
-                required></v-text-field>
+                required>
+              </v-text-field>
             </v-flex>
           </v-layout>
           <v-layout row>

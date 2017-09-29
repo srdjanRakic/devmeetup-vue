@@ -264,8 +264,8 @@ export const store = new Vuex.Store({
           const swappedPairs = {};
           Object.keys(dataPairs).forEach((key) => {
             if (Object.prototype.hasOwnProperty.call(dataPairs, key)) {
-              registeredMeetups.push(key);
-              swappedPairs[key] = key;
+              registeredMeetups.push(dataPairs[key]);
+              swappedPairs[dataPairs[key]] = key;
             }
           });
           const updatedUser = {

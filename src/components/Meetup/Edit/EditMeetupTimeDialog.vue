@@ -13,7 +13,7 @@
         <v-divider></v-divider>
         <v-layout row wrap>
           <v-flex xs12>
-            <v-time-picker v-model="editableTime" style="..." actions format="24hr">
+            <v-time-picker v-model="editableTime" style="width: 100%" actions format="24hr">
               <template scope="{save, cancel}">
                 <v-btn
                   class="blue--text darken-1"

@@ -4,8 +4,8 @@ import Home from '@/components/Home';
 import Meetups from '@/components/Meetup/Meetups';
 import CreateMeetup from '@/components/Meetup/CreateMeetup';
 import Profile from '@/components/User/Profile';
-import Signup from '@/components/User/Signup';
-import Signin from '@/components/User/Signin';
+import SignUp from '@/components/User/SignUp';
+import SignIn from '@/components/User/SignIn';
 import Meetup from '@/components/Meetup/Meetup';
 import AuthGuard from './auth-guard';
 
@@ -44,12 +44,12 @@ export default new Router({
     {
       path: '/signup',
       name: 'Signup',
-      component: Signup,
+      component: SignUp,
     },
     {
       path: '/signin',
       name: 'Signin',
-      component: Signin,
+      component: SignIn,
     },
   ],
   mode: 'history',

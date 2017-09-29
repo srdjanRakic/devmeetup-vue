@@ -30,6 +30,14 @@ export const store = new Vuex.Store({
   },
   mutations: {
     /*eslint-disable */
+    registerUserForMeetup(state, payload) {
+      const id = payload.id;
+      if (state.user.registeredMeetups.findIndex(meetup => meetup.id === id) >= 0) {
+        return;
+      }
+      state.user.registeredMeetups.push(id);
+      state.user.firebaseKeys[id] = payload.firebaseKey;
+    },
     setLoadedMeetups(state, payload) {
       state.loadedMeetups = payload;
     },
@@ -63,6 +71,24 @@ export const store = new Vuex.Store({
     /*eslint-enable */
   },
   actions: {
+    registerUserForMeetup({ commit, getters }, payload) {
+      commit('setLoading', true);
+      const user = getters.user;
+      firebase.database().ref(`/users/${user.id}`).child('/registration/')
+              .push(payload)
+              .then((data) => {
+                commit('setLoading', false);
+                commit('registerUserForMeetup', { id: payload, firebaseKey: data.key });
+              })
+              .catch((error) => {
+                // eslint-disable-next-line
+                console.log(error);
+                commit('setLoading', false);
+              });
+    },
+    unregisterUserForMeetup({ commit, getters }, payload) {
+      commit('setLoading', true);
+    },
     loadMeetups({ commit }) {
       commit('setLoading', true);
       firebase.database().ref('meetups').once('value')

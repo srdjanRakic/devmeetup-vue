@@ -52,7 +52,11 @@ export default {
   },
   methods: {
     onAgree() {
-
+      if (this.userIsRegistered) {
+        this.$store.dispatch('unregisterUserFromMeetup', this.meetupId);
+      } else {
+        this.$store.dispatch('registerUserForMeetup', this.meetupId);
+      }
     },
   },
 };

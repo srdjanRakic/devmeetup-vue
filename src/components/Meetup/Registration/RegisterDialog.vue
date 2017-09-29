@@ -7,7 +7,7 @@
       <v-container>
         <v-layout row wrap>
           <v-flex xs12>
-            <v-card-title v-if="userIsRegistered">Unregister from this Meetup?</v-card-title>
+            <v-card-title v-if="userIsRegistered">Unregister for this Meetup?</v-card-title>
             <v-card-title v-else>Register for this Meetup?</v-card-title>
           </v-flex>
         </v-layout>
@@ -46,8 +46,10 @@ export default {
   },
   computed: {
     userIsRegistered() {
-      return this.$store.getters.user.registeredMeetups
-             .findIndex(meetupId => meetupId === this.meetupId) >= 0;
+      // eslint-disable-next-line
+      return this.$store.getters.user.registeredMeetups.findIndex((meetupId) => {
+        return meetupId === this.meetupId;
+      }) >= 0;
     },
   },
   methods: {

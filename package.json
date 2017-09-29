@@ -7,8 +7,11 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
+    "prebuild": "rimraf ./dist",
     "build": "node build/build.js",
-    "lint": "eslint --ext .js,.vue src"
+    "postbuild": "rimraf dist/**/*.map",
+    "lint": "eslint --ext .js,.vue src",
+    "deploy": "surge ./dist"
   },
   "dependencies": {
     "firebase": "^4.4.0",
@@ -54,6 +57,7 @@
     "opn": "^5.1.0",
     "optimize-css-assets-webpack-plugin": "^2.0.0",
     "ora": "^1.2.0",
+    "surge": "^0.19.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "rimraf": "^2.6.0",

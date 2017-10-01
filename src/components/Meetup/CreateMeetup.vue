@@ -60,12 +60,12 @@
           </v-layout>
           <v-layout row class="mb-2">
             <v-flex xs12 sm6 offset-sm3>
-              <v-date-picker v-model="date"></v-date-picker>
+              <v-date-picker v-model="date" landscape dark></v-date-picker>
             </v-flex>
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-time-picker v-model="time" format="24hr"></v-time-picker>
+              <v-time-picker v-model="time" format="24hr" landscape dark></v-time-picker>
             </v-flex>
           </v-layout>
           <v-layout row>

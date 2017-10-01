@@ -21,7 +21,7 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar dark class="primary">
+    <v-toolbar>
       <v-toolbar-side-icon
         @click.stop="sideNav = !sideNav"
         class="hidden-sm-and-up "></v-toolbar-side-icon>
@@ -35,14 +35,14 @@
           v-for="item in menuItems"
           :key="item.title"
           :to="item.link">
-          <v-icon left dark>{{ item.icon }}</v-icon>
+          <v-icon left>{{ item.icon }}</v-icon>
           {{ item.title }}
         </v-btn>
         <v-btn
           v-if="userIsAuthenticated"
           flat
           @click="onLogout">
-          <v-icon left dark>exit_to_app</v-icon>
+          <v-icon left>exit_to_app</v-icon>
           Logout
         </v-btn>
       </v-toolbar-items>
@@ -50,6 +50,10 @@
     <main>
       <router-view></router-view>
     </main>
+     <v-footer class="pa-3">
+      <v-spacer></v-spacer>
+      <div>Srdjan Rakic © {{ new Date().getFullYear() }}</div>
+    </v-footer>
   </v-app>
 </template>
 
@@ -70,7 +74,7 @@ export default {
         menuItems = [
           { icon: 'supervisor_account', title: 'View Meetups', link: '/meetups' },
           { icon: 'room', title: 'Organize Meetup', link: '/meetup/new' },
-          { icon: 'person', title: 'Profile', link: '/profile' },
+          // { icon: 'person', title: 'Profile', link: '/profile' },
         ];
       }
       return menuItems;

@@ -68,7 +68,7 @@ export default {
     menuItems() {
       let menuItems = [
         { icon: 'search', title: 'Explore Meetups', link: '/meetups' },
-        { icon: 'add', title: 'Organize Meetup', link: '/meetups/new' },
+        { icon: 'add', title: 'Organize Meetup', link: '/meetup/new' },
         { icon: 'face', title: 'Sign up', link: '/signup' },
         { icon: 'lock_open', title: 'Sign in', link: '/signin' },
       ];

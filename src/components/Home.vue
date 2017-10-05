@@ -1,13 +1,5 @@
 <template>
   <v-container>
-    <v-layout row wrap>
-      <v-flex xs12 sm6 class="text-xs-center text-sm-right">
-        <v-btn large router to="/meetups">Explore Meetups</v-btn>
-      </v-flex>
-      <v-flex xs12 sm6 class="text-xs-center text-sm-left">
-        <v-btn large router to="/meetup/new">Organize Meetup</v-btn>
-      </v-flex>
-    </v-layout>
     <v-layout>
       <v-flex xs12 class="text-xs-center">
         <v-progress-circular
@@ -38,36 +30,6 @@
        <p>Join our awesome meetups!</p>
       </v-flex>
     </v-layout>
-       <v-flex xs12>
-            <v-container grid-list-xl>
-              <v-layout row wrap align-center>
-                <v-flex xs12 md6>
-                  <v-card class="elevation-0 transparent">
-                    <v-card-text class="text-xs-center">
-                      <v-btn flat router to="/meetups">
-                         <v-icon x-large class="blue--text text--lighten-2">search</v-icon>
-                      </v-btn>
-                    </v-card-text>
-                    <v-card-title primary-title class="layout justify-center">
-                      <div class="headline text-xs-center">Find a Meetup</div>
-                    </v-card-title>
-                  </v-card>
-                </v-flex>
-                <v-flex xs12 md6>
-                  <v-card class="elevation-0 transparent">
-                    <v-card-text class="text-xs-center">
-                      <v-btn flat router to="/meetup/new">
-                        <v-icon x-large class="blue--text text--lighten-2">add</v-icon>
-                      </v-btn>
-                    </v-card-text>
-                    <v-card-title primary-title class="layout justify-center">
-                      <div class="headline">Create a Meetup</div>
-                    </v-card-title>
-                  </v-card>
-                </v-flex>
-              </v-layout>
-            </v-container>
-          </v-flex>
   </v-container>
 </template>
 
